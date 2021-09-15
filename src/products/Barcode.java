@@ -4,7 +4,7 @@ public class Barcode {
 	private int supplierID;
 	private String sku;
 	private String barcode;
-	
+
 	public Barcode(int supplierID, String sku, String barcode) {
 		this.supplierID = supplierID;
 		this.sku = sku;
@@ -34,7 +34,7 @@ public class Barcode {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	
+
 	public String toString() {
 		return String.format("%d, %s, %s ", supplierID, sku, barcode);
 	}

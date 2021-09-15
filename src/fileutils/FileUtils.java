@@ -6,21 +6,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileUtils {
-	public File file;
 
-	public FileUtils(File file) {
-		this.file = file;
+	public FileUtils() {
 	}
 
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
-	public ArrayList<ArrayList<String>> convertToArrayList() throws FileNotFoundException {
+	public ArrayList<ArrayList<String>> convertToArrayList(File file) throws FileNotFoundException {
 		ArrayList<ArrayList<String>> fileList = new ArrayList<>();
 
 		try (Scanner scanner = new Scanner(file)) {
