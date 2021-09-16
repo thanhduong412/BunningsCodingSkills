@@ -6,11 +6,12 @@ import java.util.ArrayList;
 
 import fileutils.FileUtils;
 import products.Barcode;
+import products.Catalog;
 
-public class BarcodeList {
+public class ProductList {
 	private FileUtils fileUtils = new FileUtils();
 
-	public BarcodeList() {
+	public ProductList() {
 	}
 
 	public void addBarcodeList(ArrayList<Barcode> barcodeList, File newEntries) throws FileNotFoundException {
@@ -21,13 +22,12 @@ public class BarcodeList {
 				barcodeList.add(barcode);
 			}
 		} else {
-			dupeCheck(barcodeList, newEntriesList);
+			dupeBarcodeCheck(barcodeList, newEntriesList);
 		}
 	}
 
 	private ArrayList<Barcode> addBarcodeListFromFile(File barcodes) throws FileNotFoundException {
-		ArrayList<ArrayList<String>> temp = fileUtils.convertToArrayList(barcodes);
-		temp.remove(0);
+		ArrayList<ArrayList<String>> temp = fileUtils.convertAndClean(barcodes);
 
 		ArrayList<Barcode> barcodeList = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class BarcodeList {
 
 	}
 
-	private void dupeCheck(ArrayList<Barcode> barcodeList, ArrayList<Barcode> newEntries) {
+	private void dupeBarcodeCheck(ArrayList<Barcode> barcodeList, ArrayList<Barcode> newEntries) {
 		boolean add;
 
 		for (Barcode newBarcode : newEntries) {

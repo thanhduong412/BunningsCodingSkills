@@ -10,7 +10,14 @@ public class FileUtils {
 	public FileUtils() {
 	}
 
-	public ArrayList<ArrayList<String>> convertToArrayList(File file) throws FileNotFoundException {
+	public ArrayList<ArrayList<String>> convertAndClean(File file) throws FileNotFoundException {
+		ArrayList<ArrayList<String>> cleanedList = convertToArrayList(file);
+		cleanedList.remove(0);
+
+		return cleanedList;
+	}
+	
+	private ArrayList<ArrayList<String>> convertToArrayList(File file) throws FileNotFoundException {
 		ArrayList<ArrayList<String>> fileList = new ArrayList<>();
 
 		try (Scanner scanner = new Scanner(file)) {
