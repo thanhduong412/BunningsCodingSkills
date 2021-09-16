@@ -1,22 +1,22 @@
-package products;
+package catalog;
 
 public class Barcode {
-	private int supplierID;
+	private Supplier supplier;
 	private String sku;
 	private String barcode;
 
-	public Barcode(int supplierID, String sku, String barcode) {
-		this.supplierID = supplierID;
+	public Barcode(Supplier supplier, String sku, String barcode) {
+		this.supplier = supplier;
 		this.sku = sku;
 		this.barcode = barcode;
 	}
 
-	public int getSupplierID() {
-		return supplierID;
+	public Supplier getSupplier() {
+		return supplier;
 	}
 
-	public void setSupplierID(int supplierID) {
-		this.supplierID = supplierID;
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
 	}
 
 	public String getSku() {
@@ -36,6 +36,7 @@ public class Barcode {
 	}
 
 	public String toString() {
-		return String.format("%d, %s, %s ", supplierID, sku, barcode);
+		return "Barcode [supplier=" + supplier + ", sku=" + sku + ", barcode=" + barcode + "]";
 	}
+
 }

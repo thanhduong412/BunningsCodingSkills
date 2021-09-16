@@ -1,11 +1,13 @@
-package products;
+package catalog;
 
 public class Supplier {
 	private int ID;
+	private SupplierGroup group;
 	private String name;
 
-	public Supplier(int ID, String name) {
+	public Supplier(int ID, SupplierGroup group, String name) {
 		this.ID = ID;
+		this.group = group;
 		this.name = name;
 	}
 
@@ -17,6 +19,14 @@ public class Supplier {
 		this.ID = ID;
 	}
 
+	public SupplierGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(SupplierGroup group) {
+		this.group = group;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -26,7 +36,7 @@ public class Supplier {
 	}
 
 	public String toString() {
-		return String.format("%d, %s", ID, name);
+		return "Supplier [ID=" + ID + ", group=" + group + ", name=" + name + "]";
 	}
 
 }
