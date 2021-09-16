@@ -10,32 +10,36 @@ import catalog.Barcode;
 import catalog.Product;
 import catalog.Supplier;
 import catalog.SupplierGroup;
+import cataloglist.BarcodeList;
+import cataloglist.CatalogList;
+import cataloglist.SupplierList;
 
 public class Controller {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		FileUtils fileUtils = new FileUtils();
 
-		HashSet<Supplier> supplierList = new HashSet<>();
-		HashSet<Barcode> barcodeList = new HashSet<>();
-		HashSet<Product> catalog = new HashSet<>();
+		SupplierList supplierList = new SupplierList(new HashSet<Supplier>());
+		BarcodeList barcodeList = new BarcodeList(new HashSet<Barcode>());
+		CatalogList catalogList = new CatalogList(new HashSet<Product>());
 
 		// create supplier objects from input files
 
-		fileUtils.addSuppliersFromFile(supplierList, new File("./input/suppliersA.csv"), SupplierGroup.A);
-		fileUtils.addSuppliersFromFile(supplierList, new File("./input/suppliersB.csv"), SupplierGroup.B);
+		supplierList.addFromFile(fileUtils, new File("./input/suppliersA.csv"), SupplierGroup.A);
+		supplierList.addFromFile(fileUtils, new File("./input/suppliersB.csv"), SupplierGroup.B);
 
 		// create barcode objects from input files, sort which supplier group, if
 		// barcodes same dont create
-		fileUtils.addBarcodesFromFile(supplierList, barcodeList, new File("./input/barcodesA.csv"), SupplierGroup.A);
-		fileUtils.addBarcodesFromFile(supplierList, barcodeList, new File("./input/barcodesB.csv"), SupplierGroup.B);
+		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesA.csv"), SupplierGroup.A);
+		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesB.csv"), SupplierGroup.B);
 
 		// create valid products and add to catalog
-		fileUtils.addProductsFromFile(supplierList, SupplierGroup.A, barcodeList, catalog,
+		catalogList.addFromFile(fileUtils, supplierList, SupplierGroup.A, barcodeList,
 				new File("./input/catalogA.csv"));
-		fileUtils.addProductsFromFile(supplierList, SupplierGroup.B, barcodeList, catalog,
+		catalogList.addFromFile(fileUtils, supplierList, SupplierGroup.B, barcodeList,
 				new File("./input/catalogB.csv"));
 		// output
 
+		System.out.println(catalogList);
 	}
 }
