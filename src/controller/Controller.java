@@ -39,21 +39,21 @@ public class Controller {
 		 * Adds valid values to corresponding HashSets. Note: suppliers should be added
 		 * in order of least priority as duplicate new entries will overwrite old ones.
 		 */
-		supplierList.addFromFile(fileUtils, new File("./input/suppliersA.csv"), SupplierGroup.A);
-		supplierList.addFromFile(fileUtils, new File("./input/suppliersB.csv"), SupplierGroup.B);
+		supplierList.addFromFile(fileUtils, new File("../input/suppliersA.csv"), SupplierGroup.A);
+		supplierList.addFromFile(fileUtils, new File("../input/suppliersB.csv"), SupplierGroup.B);
 
-		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesA.csv"), SupplierGroup.A);
-		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesB.csv"), SupplierGroup.B);
+		barcodeList.addFromFile(fileUtils, supplierList, new File("../input/barcodesA.csv"), SupplierGroup.A);
+		barcodeList.addFromFile(fileUtils, supplierList, new File("../input/barcodesB.csv"), SupplierGroup.B);
 
 		catalogList.addFromFile(fileUtils, supplierList, SupplierGroup.A, barcodeList,
-				new File("./input/catalogA.csv"));
+				new File("../input/catalogA.csv"));
 		catalogList.addFromFile(fileUtils, supplierList, SupplierGroup.B, barcodeList,
-				new File("./input/catalogB.csv"));
+				new File("../input/catalogB.csv"));
 
 		/**
 		 * Create output csv files and write valid products to it.
 		 */
-		fileUtils.createFile("./output/result_output.csv");
-		catalogList.writeToFile("./output/result_output.csv");
+		fileUtils.createFile("../output/result_output.csv");
+		catalogList.writeToFile("../output/result_output.csv");
 	}
 }
