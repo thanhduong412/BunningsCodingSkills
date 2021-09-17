@@ -28,8 +28,10 @@ public class Controller {
 		supplierList.addFromFile(fileUtils, new File("./input/suppliersA.csv"), SupplierGroup.A);
 		supplierList.addFromFile(fileUtils, new File("./input/suppliersB.csv"), SupplierGroup.B);
 
-		// create barcode objects from input files, sort which supplier group, if
-		// barcodes same dont create
+		/*
+		 * create barcode objects from input files, sort which supplier group, if
+		 * barcodes same dont create
+		 */
 		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesA.csv"), SupplierGroup.A);
 		barcodeList.addFromFile(fileUtils, supplierList, new File("./input/barcodesB.csv"), SupplierGroup.B);
 
@@ -38,8 +40,9 @@ public class Controller {
 				new File("./input/catalogA.csv"));
 		catalogList.addFromFile(fileUtils, supplierList, SupplierGroup.B, barcodeList,
 				new File("./input/catalogB.csv"));
-		// output
 
-		System.out.println(catalogList);
+		// output
+		fileUtils.createFile("./output/result_output.csv");
+		catalogList.writeToFile("./output/result_output.csv");
 	}
 }

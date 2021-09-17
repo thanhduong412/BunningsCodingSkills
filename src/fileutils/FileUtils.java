@@ -2,6 +2,7 @@ package fileutils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,6 +26,20 @@ public class FileUtils {
 		cleanedList.remove(0);
 
 		return cleanedList;
+	}
+
+	public void createFile(String fileDir) {
+		try {
+			File file = new File(fileDir);
+			if (file.createNewFile()) {
+				System.out.println("File createdL :" + file.getName());
+			} else {
+				System.out.println("File already exists.");
+			}
+		} catch (IOException e) {
+			System.out.println("An unexpected error has occured.");
+			e.printStackTrace();
+		}
 	}
 
 	private ArrayList<ArrayList<String>> convertToArrayList(File file) throws FileNotFoundException {
