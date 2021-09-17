@@ -1,5 +1,10 @@
 package cataloglist;
 
+/**
+ * @author Thanh Duong
+ * @version 1.0
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +20,9 @@ import catalog.SupplierGroup;
 import fileutils.FileUtils;
 
 public class CatalogList {
+	/**
+	 * HashSet of Product objects defining the merged products
+	 */
 	private HashSet<Product> list;
 
 	public CatalogList(HashSet<Product> list) {
@@ -29,6 +37,19 @@ public class CatalogList {
 		this.list = list;
 	}
 
+	/**
+	 * Takes a csv file, creates a Product object from values and adds to HashSet if
+	 * valid. Will only add products that contain barcode and supplier properties
+	 * present in the existing barcode and supplier HashSets.
+	 * 
+	 * @param fileUtils     File utility object used to convert csv into workable
+	 *                      ArrayList.
+	 * @param supplierList  HashSet of valid suppliers.
+	 * @param supplierGroup Supplier group that the new entries originate from.
+	 * @param barcodeList   HashSet of valid barcodes.
+	 * @param file          Input csv file.
+	 * @throws FileNotFoundException
+	 */
 	public void addFromFile(FileUtils fileUtils, SupplierList supplierList, SupplierGroup supplierGroup,
 			BarcodeList barcodeList, File file) throws FileNotFoundException {
 		ArrayList<ArrayList<String>> rawFile = fileUtils.convertAndClean(file);
@@ -57,6 +78,11 @@ public class CatalogList {
 
 	}
 
+	/**
+	 * Generates csv file containing merged product catalog.
+	 * 
+	 * @param fileDir Destination and name of output file.
+	 */
 	public void writeToFile(String fileDir) {
 		try {
 			FileWriter writer = new FileWriter(fileDir);

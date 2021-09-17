@@ -1,9 +1,21 @@
 package catalog;
 
+/**
+ * @author Thanh Duong
+ * @version 1.0
+ */
+
 public class Product {
 	private String sku;
 	private String productName;
+	/**
+	 * Represents the barcode associated with the product
+	 */
 	private Barcode barcode;
+
+	/**
+	 * Represents the supplier associated with the product
+	 */
 	private Supplier supplier;
 
 	public Product(String sku, String productName, Barcode barcode, Supplier supplier) {

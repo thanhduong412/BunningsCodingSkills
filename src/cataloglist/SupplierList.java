@@ -1,5 +1,10 @@
 package cataloglist;
 
+/**
+ * @author Thanh Duong
+ * @version 1.0
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,6 +15,9 @@ import catalog.SupplierGroup;
 import fileutils.FileUtils;
 
 public class SupplierList {
+	/**
+	 * HashSet of Supplier objects.
+	 */
 	private HashSet<Supplier> list;
 
 	public SupplierList(HashSet<Supplier> list) {
@@ -24,6 +32,16 @@ public class SupplierList {
 		this.list = list;
 	}
 
+	/**
+	 * Takes a csv file and adds supplier to HashSet. New entries will ovewrite
+	 * existing ones.
+	 * 
+	 * @param fileUtils     File utility used to convert csv into workable
+	 *                      ArrayList.
+	 * @param file          Input csv file.
+	 * @param supplierGroup Supplier group the new entries originate from.
+	 * @throws FileNotFoundException
+	 */
 	public void addFromFile(FileUtils fileUtils, File file, SupplierGroup supplierGroup) throws FileNotFoundException {
 		ArrayList<ArrayList<String>> rawFile = fileUtils.convertAndClean(file);
 
@@ -33,6 +51,13 @@ public class SupplierList {
 
 	}
 
+	/**
+	 * Find specific Supplier object based on its ID and group.
+	 * 
+	 * @param supplierID    The ID of the supplier.
+	 * @param supplierGroup The group the supplier belongs to.
+	 * @return
+	 */
 	public Supplier findSupplier(int supplierID, SupplierGroup supplierGroup) {
 
 		for (Supplier supplier : list) {

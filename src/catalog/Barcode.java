@@ -1,6 +1,14 @@
 package catalog;
 
+/**
+ * @author Thanh Duong
+ * @version 1.0
+ */
+
 public class Barcode {
+	/**
+	 * Represents the supplier associated with the barcode
+	 */
 	private Supplier supplier;
 	private String sku;
 	private String barcode;
